@@ -3,7 +3,7 @@ import imghdr
 import smtplib
 from email.message import EmailMessage
 
-PASSWORD = os.getenv("PASSWORD")
+PASSWORD = os.getenv("EMAIL_APP_PASSWORD")
 SENDER = "pythonemail194@gmail.com"
 RECEIVER = "vanjasav194@gmail.com"
 HOST = "smtp.gmail.com"
@@ -11,7 +11,6 @@ PORT = 587
 
 
 def send_email(image_path):
-    print("Email started")
     email_message = EmailMessage()
     email_message["Subject"] = "New customer showed up!"
     email_message.set_content("Hey, we just saw a new customer!")
@@ -27,7 +26,6 @@ def send_email(image_path):
     gmail.login(SENDER, PASSWORD)
     gmail.sendmail(SENDER, RECEIVER, email_message.as_string())
     gmail.quit()
-    print("Email finished")
 
 
 if __name__ == "__main__":

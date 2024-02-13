@@ -14,11 +14,9 @@ count = 1
 
 
 def clean_folder():
-    print("Clean started")
     images = glob.glob("images/*.png")
     for image in images:
         os.remove(image)
-    print("Clean finished")
 
 
 while True:
@@ -57,17 +55,14 @@ while True:
         email_thread = Thread(target=send_email, args=(image_with_object, ))
         email_thread.daemon = True
 
-        clean_thread = Thread(target=clean_folder)
-        clean_thread.daemon = True
-
         email_thread.start()
-        clean_thread.start()
 
     cv2.imshow("My Video", frame)
 
     key = cv2.waitKey(1)
 
     if key == ord("q"):
+        clean_folder()
         break
 
 video.release()
